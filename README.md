@@ -84,36 +84,6 @@ cd week3/basic
 python3 check.py 03_quick_sort.py
 ```
 
-### Basic (uv 버전)
-
-[uv](https://docs.astral.sh/uv/)를 사용하면 Python 설치 없이도 바로 실행할 수 있습니다.
-
-#### 모든 문제 한 번에 테스트
-
-```bash
-# Week 2 기본 문제 전체 테스트
-uv run week2/basic/check.py --all
-
-# Week 3 기본 문제 전체 테스트
-uv run week3/basic/check.py --all
-
-# Week 4 기본 문제 전체 테스트
-uv run week4/basic/check.py --all
-
-# Week 5 기본 문제 전체 테스트
-uv run week5/basic/check.py --all
-```
-
-#### 특정 문제만 테스트
-
-```bash
-# 예시: Week 2의 01_python_dict.py만 테스트
-uv run week2/basic/check.py 01_python_dict.py
-
-# 예시: Week 3의 03_quick_sort.py만 테스트
-uv run week3/basic/check.py 03_quick_sort.py
-```
-
 ### problem-solving
 
 실제 문제는 문제링크를 통해 접속한 사이트(백준, LeetCode)에서 풉니다.
