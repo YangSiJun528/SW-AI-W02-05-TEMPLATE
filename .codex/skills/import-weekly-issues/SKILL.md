@@ -1,3 +1,8 @@
+---
+name: import-weekly-issues
+description: Create GitHub issues from a `weekN/weekN_issues_complete.csv` file and add them to a GitHub Project. Use when the user explicitly asks to create or import issues for a specific `weekN` folder such as `week2` or `week10`.
+---
+
 # Skill: Import Weekly Issues
 
 ## Description
