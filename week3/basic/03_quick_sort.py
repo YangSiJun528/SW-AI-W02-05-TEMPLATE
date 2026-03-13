@@ -34,22 +34,18 @@ def partition(arr, low, high):
     Returns:
         피벗의 최종 위치 인덱스
     """
-    # TODO: 피벗을 선택 (일반적으로 마지막 원소)
-    pass
+    pivot = arr[high]
     
-    # TODO: i는 작은 원소들의 마지막 인덱스를 추적
-    pass
-    
-    # TODO: low부터 high-1까지 순회하면서
-    ## 현재 원소가 피벗보다 작거나 같으면:
-    ##   1. i를 1 증가
-    ##   2. arr[i]와 arr[j]를 교환
-    pass
-    
-    # TODO: 피벗을 올바른 위치(i+1)에 배치
-    pass
-    
-    return i + 1
+    i = low - 1
+
+    for j in range(low, high): # 반복하면서 파티셔닝 하는 역할
+        if arr[j] <= pivot:
+            i = i + 1
+            arr[i], arr[j] = arr[j], arr[i]
+    i = i + 1
+    arr[i], arr[high] = arr[high], arr[i] # 이걸로 지금의 i+1에서 피벗이랑 스왑하면 피벗을 기준으로 좌측은 작은 그룹, 큰쪽은 큰 그룹이 생김.
+
+    return i # 피벗 하고 난 다음 위치 인덱스
 
 def quick_sort_helper(arr, low, high):
     """
@@ -60,11 +56,11 @@ def quick_sort_helper(arr, low, high):
         low: 시작 인덱스
         high: 끝 인덱스
     """
-    # TODO: base case - low가 high보다 작을 때만 정렬
-    ## 분할하여 피벗 인덱스 얻기
-    ## 피벗 왼쪽 부분 재귀 정렬
-    ## 피벗 오른쪽 부분 재귀 정렬
-    pass 
+    if low < high:
+        pivoted = partition(arr, low, high)
+
+        quick_sort_helper(arr, low, pivoted - 1)
+        quick_sort_helper(arr, pivoted + 1, high)
     
 
 def quick_sort(arr):
@@ -79,6 +75,32 @@ def quick_sort(arr):
     """
     quick_sort_helper(arr, 0, len(arr) - 1)
     return arr
+
+# 알고리즘 풀이 용 단순화된 Quick Sort
+def simple_quick_sort(arr, low, high):
+    if low >= high:
+        return
+    pivot = arr[high]
+
+    # i는 피벗 이하 파티션의 경계 인덱스. 스왑은 항상 i+1(큰 파티션의 첫 원소)에서 발생하므로 작은 파티션의 불변식은 유지됨.
+    i = low - 1
+
+    for j in range(low, high):
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+
+    pvidx = i + 1
+    arr[pvidx], arr[high] = arr[high], arr[pvidx]
+
+    simple_quick_sort(arr, low, pvidx - 1)
+    simple_quick_sort(arr, pvidx + 1, high)
+
+# 호출
+# arr = [10, 7, 8, 9, 1, 5]
+# print(f"simple quick sort BEFORE: {arr}")
+# simple_quick_sort(arr, 0, len(arr) - 1)
+# print(f"simple quick sort AFTER: {arr}")
 
 # 테스트 케이스
 if __name__ == "__main__":

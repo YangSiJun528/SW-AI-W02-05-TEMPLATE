@@ -23,32 +23,33 @@
 - 왼쪽과 오른쪽의 최댓값 중 큰 값 반환
 """
 
+
 def find_max_divide_conquer(arr, left, right):
     """
     분할 정복으로 최댓값 찾기
-    
+
     Args:
         arr: 배열
         left: 시작 인덱스
         right: 끝 인덱스
-    
+
     Returns:
         최댓값
     """
-    # TODO: base case - 원소가 하나면 그 값 반환
-    pass
-    
-    # TODO: 중간 지점 계산
-    pass
-    
-    # TODO: 왼쪽 절반의 최댓값
-    pass
-        
-    # TODO: 오른쪽 절반의 최댓값
-    pass
-    
-    # TODO: 둘 중 큰 값 반환
-    pass
+    if left == right:
+        return arr[left]
+
+    # 정수 나눗셈이라 원소 개수가 홀수여도
+    # left~mid, mid+1~right로 나뉘며 결국 길이 1 구간에 도달함
+    # 예: 요소 개수가 5인 배열의 경우
+    #   5 -> 2,3
+    #   3 -> 1,2
+    mid = (left + right) // 2
+
+    l_max = find_max_divide_conquer(arr, left, mid)
+    r_max = find_max_divide_conquer(arr, mid + 1, right)
+
+    return max(r_max, l_max)
 
 # 테스트 케이스
 if __name__ == "__main__":
