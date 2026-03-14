@@ -18,65 +18,65 @@
 # enumerate 사용법 햇갈려서 구글링
 
 # 4. 최종 코드
-import sys
-
-inputs = sys.stdin.readline().strip()
-cmd_cnt = int(sys.stdin.readline().strip())
-cmds = [sys.stdin.readline().slice() for _ in range()]
-
-
-class Node:
-    def __init__(val):
-        self.val = val
-        self.prev = prev
-        self.next = next
-
-
-class LList:
-    def __init__():
-        # 더미 세팅 - 검사 편하게 하기 위함.
-        self.head = Node(None)
-        self.tail = Node(None)
-
-        self.head.next = self.tail
-        self.tail.prev = self.head
-
-    def insert_at(idx, val):
-        new_node = Node(val)
-
-        cur = _get(idx)
-
-        new_node.next = cur
-        new_node.prev = cur.prev
-
-        cur.prev.next = new_node
-        cur.prev = new_node
-
-    def del_at(idx):
-        cur = _get(idx)
-
-        cur.prev.next = cur.next
-        cur.next.prev = cur.prev
-
-        # 없어도 외부에서 접근 못해서 GC 대상이지만 명확하게
-        cur.prev = None
-        cur.next = None
-
-    def _get(idx):
-        cur = self.head.next  # head는 더미므로 next부터 시작
-        for _ in range(idx):
-            cur = cur.next
-        return cur
-
-
-llist = LList()
-
-for i, c in enumerate(inputs):
-    insert_at(i, c)
-
-cursur_idx = i  # 파이썬에선 i는 for 바깥에서도 접근 가능
-
-for cmd in cmds:
-    if cmd[0] == 'P':
-
-
+# import sys
+#
+# inputs = sys.stdin.readline().strip()
+# cmd_cnt = int(sys.stdin.readline().strip())
+# cmds = [sys.stdin.readline().slice() for _ in range()]
+#
+#
+# class Node:
+#     def __init__(val):
+#         self.val = val
+#         self.prev = prev
+#         self.next = next
+#
+#
+# class LList:
+#     def __init__():
+#         # 더미 세팅 - 검사 편하게 하기 위함.
+#         self.head = Node(None)
+#         self.tail = Node(None)
+#
+#         self.head.next = self.tail
+#         self.tail.prev = self.head
+#
+#     def insert_at(idx, val):
+#         new_node = Node(val)
+#
+#         cur = _get(idx)
+#
+#         new_node.next = cur
+#         new_node.prev = cur.prev
+#
+#         cur.prev.next = new_node
+#         cur.prev = new_node
+#
+#     def del_at(idx):
+#         cur = _get(idx)
+#
+#         cur.prev.next = cur.next
+#         cur.next.prev = cur.prev
+#
+#         # 없어도 외부에서 접근 못해서 GC 대상이지만 명확하게
+#         cur.prev = None
+#         cur.next = None
+#
+#     def _get(idx):
+#         cur = self.head.next  # head는 더미므로 next부터 시작
+#         for _ in range(idx):
+#             cur = cur.next
+#         return cur
+#
+#
+# llist = LList()
+#
+# for i, c in enumerate(inputs):
+#     insert_at(i, c)
+#
+# cursur_idx = i  # 파이썬에선 i는 for 바깥에서도 접근 가능
+#
+# for cmd in cmds:
+#     if cmd[0] == 'P':
+#
+#
