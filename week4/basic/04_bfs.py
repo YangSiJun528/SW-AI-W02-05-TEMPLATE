@@ -35,11 +35,11 @@ from collections import deque
 def bfs(graph, start):
     """
     너비 우선 탐색
-    
+
     Args:
         graph: 그래프 딕셔너리
         start: 시작 정점
-    
+
     Returns:
         방문 순서 리스트
     """
@@ -51,9 +51,11 @@ def bfs(graph, start):
 
     while queue:
         u = queue.popleft()
-        result.append(u)
+        result.append(u) # 결과 처리
         for v in graph[u]:
-            if v not in visited:
+            if v in visited:
+                continue
+            else: # v not in visited:
                 queue.append(v)
                 visited.add(v)
 
@@ -68,7 +70,7 @@ if __name__ == "__main__":
         2: [0, 1, 3],
         3: [2]
     }
-    
+
     print("=== BFS (너비 우선 탐색) ===")
     result = bfs(graph, 0)
     print(f"시작 정점: 0")
