@@ -39,22 +39,32 @@ def topological_sort(vertices, edges):
     Returns:
         위상 정렬 순서
     """
-    # TODO: 그래프와 진입 차수 초기화
-    pass
-    
-    # TODO: 그래프 구성 및 진입 차수 계산
-    pass
-    
-    # TODO: 진입 차수가 0인 정점들을 큐에 추가
-    pass
-    
+    # 구현 참고한 코드: https://youtu.be/xeSz3pROPS8?si=XuSG5KmUeW-IdBzB
+
+    indegree = {v:0 for v in range(vertices)} # dict가 value 간의 폭이 넓은 경우에도 유리하므로
+    graph = {v:[] for v in range(vertices)} # dict가 value 간의 폭이 넓은 경우에도 유리하므로
+    for u, v in edges:
+        graph[u].append(v) # 단방향이라 이거만
+        indegree[v] += 1
+
+    #print(indegree)
+    #print(graph)
+
     result = []
-    
-    # TODO: 큐가 빌 때까지 반복
-    ## 큐에서 정점 꺼내기
-    ## 인접한 정점들의 진입 차수 감소
-    pass
-    
+
+    # 진입 차수가 0인 정점들을 큐에 삽입 (시작 가능한 노드)
+    queue = deque(i for i in indegree if indegree[i] == 0)
+
+    while queue:
+        v = queue.popleft()
+        result.append(v)  # 현재 정점 처리
+
+        # 현재 정점에서 나가는 간선 제거 - 단방향이라 visited 처리 필요없음
+        for u in graph[v]:
+            indegree[u] -= 1  # v 제거 → u의 진입 차수 감소
+            if indegree[u] == 0: # 더 이상 들어오는 진입 차수가 없으면 큐에 넣기
+                queue.append(u)
+
     return result
 
 # 테스트 케이스
