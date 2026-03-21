@@ -42,17 +42,18 @@ def dfs(graph, start, visited=None):
     Returns:
         방문 순서 리스트
     """
-    # TODO: visited가 None이면 초기화
-    pass
-    
-    # TODO: 현재 정점 방문
-    pass
-    
-    # TODO: 인접한 정점들에 대해 재귀
-    ## 방문하지 않은 정점이면 재귀 호출
-    pass
-    
-    return visited
+    if visited is None:
+        visited = set()
+
+    # 재귀이므로 여기가 초기 설정하는 부분이 됨. 반복문도 비슷하긴 함.
+    visited.add(start)
+    order = [start]
+
+    for v in graph[start]:
+        if v not in visited:
+            order += dfs(graph, v, visited)
+
+    return order
 
 # 테스트 케이스
 if __name__ == "__main__":
