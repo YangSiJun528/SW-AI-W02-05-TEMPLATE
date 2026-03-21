@@ -45,7 +45,7 @@ def dfs(graph, start, visited=None):
     if visited is None:
         visited = set()
 
-    # 재귀이므로 여기가 초기 설정하는 부분이 됨. 반복문도 비슷하긴 함.
+    # 재귀는 방문했을때 처리하는게 더 직관적임. 아니면 별도 처리가 필요해서 복잡함.
     visited.add(start)
     order = [start]
 
@@ -53,6 +53,22 @@ def dfs(graph, start, visited=None):
         if v not in visited:
             order += dfs(graph, v, visited)
 
+    return order
+
+def dfs_iter(graph, start):
+    visited = {start}
+    stack = [start]
+    order = []
+
+    while stack:
+        u = stack.pop()
+        order.append(u) # 뭔가 결과 처리
+        for v in reversed(graph[u]): # 하드코딩된 테스트 정답이랑 순서 맞추려고 reversed(), 이건 리스트 복사 안함, 근데 안해도 올바른 동작이긴 함
+            if v in visited:
+                continue
+            else:
+                visited.add(v)
+                stack.append(v)
     return order
 
 # 테스트 케이스
@@ -66,7 +82,8 @@ if __name__ == "__main__":
     }
     
     print("=== DFS (깊이 우선 탐색) ===")
-    result = dfs(graph, 0)
+    #result = dfs(graph, 0)
+    result = dfs_iter(graph, 0)
     print(f"시작 정점: 0")
     print(f"방문 순서: {result}")
 
