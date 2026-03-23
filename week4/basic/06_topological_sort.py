@@ -56,14 +56,14 @@ def topological_sort(vertices, edges):
     queue = deque(i for i in indegree if indegree[i] == 0)
 
     while queue:
-        v = queue.popleft()
-        result.append(v)  # 현재 정점 처리
+        u = queue.popleft()
+        result.append(u)  # 현재 정점 처리
 
         # 현재 정점에서 나가는 간선 제거 - 단방향이라 visited 처리 필요없음
-        for u in graph[v]:
-            indegree[u] -= 1  # v 제거 → u의 진입 차수 감소
-            if indegree[u] == 0: # 더 이상 들어오는 진입 차수가 없으면 큐에 넣기
-                queue.append(u)
+        for v in graph[u]:
+            indegree[v] -= 1  # u 제거 -> u -> v 간선 제거 -> v의 진입 차수 감소
+            if indegree[v] == 0: # 더 이상 들어오는 진입 차수가 없으면 큐에 넣기
+                queue.append(v)
 
     return result
 
