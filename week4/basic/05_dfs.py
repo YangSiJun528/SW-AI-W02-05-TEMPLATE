@@ -56,18 +56,17 @@ def dfs(graph, start, visited=None):
     return order
 
 def dfs_iter(graph, start):
-    visited = {start}
     stack = [start]
+    visited = set()
     order = []
-
     while stack:
         u = stack.pop()
-        order.append(u) # 뭔가 결과 처리
-        for v in reversed(graph[u]): # 하드코딩된 테스트 정답이랑 순서 맞추려고 reversed(), 이건 리스트 복사 안함, 근데 안해도 올바른 동작이긴 함
-            if v in visited:
-                continue
-            else:
-                visited.add(v)
+        if u in visited:
+            continue
+        visited.add(u)
+        order.append(u)
+        for v in reversed(graph[u]): # 접근 순서 맞추기 위한 처리 - 탐색 방향이 달라도 맞아야하는데, 테스트에선 하드코딩됨.
+            if v not in visited:
                 stack.append(v)
     return order
 
