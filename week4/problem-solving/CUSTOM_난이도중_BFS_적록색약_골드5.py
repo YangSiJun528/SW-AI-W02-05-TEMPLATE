@@ -1,5 +1,5 @@
-# 문제: BFS - 토마토 3D (백준 골드5)
-# 링크: https://www.acmicpc.net/problem/7569
+# 문제: BFS - 적록색약 (백준 골드5)
+# 링크: https://www.acmicpc.net/problem/10026
 # AI 사용 횟수:
 # AI 사용 방법:
 # 목표 시간:
